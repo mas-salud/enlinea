@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{% block title %} CONSULTORIO EN LINEA{%endblock%}
+
+{% block body %}    
+<div class="container"></div>
+<div class="row"></div>
+<h2>CONSULTA DE FRANJAS</h2>
+    Escoja la franja <SELECT name="frajas">
+        {% for c in muestra_franjas %}
+            <OPTION value={{c.id}}>{{c.hora_inicio}}</option>
+        {% endfor %}
+        </SELECT>
+{% endblock %}  

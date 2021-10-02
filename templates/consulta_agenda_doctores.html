@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{%block title%} CONSULTORIO EN LINEA{%endblock%}
+
+{%block body%}    
+<div class="container"></div>
+<div class="row"></div>
+<h2>CONSULTA DE AGENDA DE DOCTORES</h2>
+<div class="container"></div>
+<div class="row"></div>
+
+
+
+<table style="width: 70%" class="center">
+   
+    <tr>
+        <th>No.</th>
+        <th>Fecha</th>
+        <th>Paciente</th>
+        <th>Hora</th>
+     </tr> 
+     {% for row in muestra_agenda%}
+     <tr>
+
+        <th>{{row.id}}</th>
+        <th>{{row.fecha_cita}}</th>
+        <th>{{muestra_paciente[row.id_paciente].nombres}}</th>
+        <th>{{muestra_franjas[row.id_franja].hora_inicio}}</th>
+       
+       </tr> 
+     {%endfor%}
+</table>
+{%endblock%}  

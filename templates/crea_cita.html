@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{% block title %} CREACION DE CITAS{%endblock%}
+
+{% block body %}    
+<div class="container"></div>
+<div class="row"></div>
+<form method="post" action="#">
+<h3>SELECCIONE EL DOCTOR</h3>
+        <SELECT name="doctor_seleccionado">
+        {% for c in muestra_doctores %}
+            <OPTION value={{c.id}}>{{c.nombre_completo}}</option>
+        {% endfor %}
+        </SELECT>
+        </br>
+        <h3>SELECCIONE EL DIA</h3>
+        <input type="date">
+<!--
+        <h3>SELECCIONE LA HORA</h3>
+             <SELECT name="franja_escogida">
+                {% for c in muestra_franjas %}
+                    <OPTION value={{c.id}}>{{c.hora_inicio}}</option>
+                {% endfor %}
+             </SELECT>   
+-->
+<input type=submit value="enviar">
+</form>
+{% endblock %}  

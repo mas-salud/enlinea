@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{% block title %} CONSULTORIO EN LINEA{%endblock%}
+
+{% block body %}    
+<div class="container"></div>
+<div class="row"></div>
+<h2>CONSULTA DE DOCTORES</h2>
+    Escoja el Doctor <SELECT name="nombredoctor">
+        {% for c in muestra_doctores %}
+            <OPTION value={{c.id}}>{{c.nombre_completo}}</option>
+        {% endfor %}
+        </SELECT>
+{% endblock %}  
