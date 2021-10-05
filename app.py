@@ -48,11 +48,14 @@ def get_pacientes():
 
 @app.route("/pacientes_citas")
 def get_pacientes_citas():
-    print("entro")
-    all_data=Agenda.query.filter_by(id_paciente=2)
+    id_capturado_paciente=2
+    all_data=Agenda.query.filter_by(id_paciente=id_capturado_paciente).all()
+    busca = (Pacientes.query.filter_by(id= id_capturado_paciente).first())
+    nombre_busca=busca.nombres
+    print(nombre_busca)
     all_doctores=Doctores.todict()
     all_franjas=Franjas.todict()
-    return render_template('consulta_agenda_pacientes.html',muestra_agenda=all_data,muestra_doctores=all_doctores,muestra_franjas=all_franjas)
+    return render_template('consulta_agenda_pacientes.html',nombre=nombre_busca,muestra_agenda=all_data,muestra_doctores=all_doctores,muestra_franjas=all_franjas)
 
 @app.route("/franjas")
 
