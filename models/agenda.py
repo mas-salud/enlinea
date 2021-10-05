@@ -35,8 +35,9 @@ class Agenda(database.Model):
         return Agenda.query.all()
 
     @staticmethod
-    def get_algunos():
-        return Agenda.query.filter_by(id_doc=1)   
+    def get_franjas_dia_doctor():
+        franjas_dia_doctor=Agenda.query.filter((Agenda.id_doc==2) & (Agenda.fecha_cita=="09/30/2021")).all()
+        return franjas_dia_doctor   
         
     #def get_citas_doctor():
     #    return Agenda.query.filter_by(Agenda.id_doc=1).filter(month(Agenda.fecha_cita)=9).all()

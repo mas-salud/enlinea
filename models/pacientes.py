@@ -48,6 +48,9 @@ class Pacientes(database.Model):
     def get_all():
         return Pacientes.query.all()
         
+    @staticmethod
+    def get_paciente(busca_documento):
+        return Pacientes.query.filter_by(numero_documento=busca_documento).first()    
         
         
     

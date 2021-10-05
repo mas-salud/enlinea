@@ -6,14 +6,13 @@
 {%block body%}    
 <div class="container"></div>
 <div class="row"></div>
-<h2>CONSULTA DE AGENDA</h2>
+<h2>CONSULTA DE CITAS PARA EL PACIENTE</h2>
 
 <table style="width: 70%" class="center">
    
     <tr>
         <th>No.</th>
         <th>Fecha</th>
-        <th>Paciente</th>
         <th>Doctor</th>
         <th>Hora</th>
      </tr> 
@@ -22,7 +21,6 @@
 
         <th>{{row.id}}</th>
         <th>{{row.fecha_cita}}</th>
-        <th>{{muestra_paciente[row.id_paciente].nombres}}</th>
         <th>{{muestra_doctores[row.id_doc].nombre_completo}}</th>
         <th>{{muestra_franjas[row.id_franja].hora_inicio}}</th>
        

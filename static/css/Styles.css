@@ -1,0 +1,68 @@
+html{
+    margin: 20px;
+}
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1300&display=swap');
+
+.container .card{
+    width: 330px;
+    height: 30px;
+    float: left;
+    transform: translateY(-25px);
+    padding: 0.5px;
+    margin: 15px;
+    transition: all 0.50s;
+    background-color: #63CBDC;
+}
+
+.row{
+  border: 1px solid #7a7c83;
+  width: 200px;
+  border-radius: 2%;
+  margin-left: 35%;
+  margin-right: 55%;
+}
+
+.consultar{
+  height: 35px;
+  width: 50px;
+  margin-left: 35%;
+  margin-right: 45%;
+  }
+
+.regresar{
+  height: 35px;
+  width: 350px;
+  margin-right: 15%;
+  margin-left: 85%;
+}
+
+.regresar2{
+  height: 35px;
+  width: 350px;
+  margin-right: 15%;
+  margin-left: 85%;
+}
+
+.enviar{
+  height: 35px;
+  width: 150px;
+  margin-left: 35%;
+  margin-right: 45%;
+  }
+
+.Logindoc{
+  margin-left: 40%;
+  margin-right: 35%;
+  border: 3px solid #bdb9b9c5;
+  border-radius: 8px;
+}
+
+.btn-primary{
+  text-align: right;
+  color: white;
+}
+
+h2{
+  text-align: center;
+}
+
