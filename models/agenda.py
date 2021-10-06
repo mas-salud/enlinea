@@ -1,5 +1,6 @@
+from flask.helpers import flash
 from app import database
-#from app import bcrypt
+
 
 class Agenda(database.Model):
     
@@ -9,7 +10,7 @@ class Agenda(database.Model):
     fecha_cita = database.Column(database.Date, nullable=False)
     id_doc = database.Column(database.Integer,database.ForeignKey ("doctores.id"),nullable=False)
     id_paciente = database.Column(database.Integer,database.ForeignKey ("pacientes.id"),nullable=False)
-    id_franja = database.Column(database.Integer, database.ForeignKey ("franjas.id"),nullable=False)
+    id_franja = database.Column(database.Integer, database.ForeignKey ("franjas.id_franja"),nullable=False)
     codigo_cita = database.Column(database.String(8), nullable=False)
     status_cita = database.Column(database.String(1), nullable=False)
     
@@ -21,14 +22,19 @@ class Agenda(database.Model):
         self.id_franja= id_franja
         self.codigo_cita = codigo_cita
         self.status_cita = status_cita
-                
-    
+    '''         
+    def __init__(self,fecha_cita,id_doc,id_paciente,id_franja,codigo_cita,status_cita):
+        self.fecha_cita = fecha_cita
+        self.codigo_cita = codigo_cita
+        self.status_cita = status_cita
+    '''
     def __str__(self):
         return f"<Agenda {self.id} {self.fecha_cita} {self.id_doc} {self.id_paciente}{self.id_franja}{self.codigo_cita}{self.status_cita}>"
     
     def create(self):
         database.session.add(self)
         database.session.commit()
+    #    flash("Cita creada Exitosamente")
     
     @staticmethod
     def get_all():

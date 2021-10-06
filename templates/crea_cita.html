@@ -1,29 +1,70 @@
 {%extends 'base.html'%}
 {%include 'header.html'%}
-
 {% block title %} CREACION DE CITAS{%endblock%}
-
-{% block body %}    
-<div class="container"></div>
-<div class="row"></div>
-<form method="post" action="#">
-<h3>SELECCIONE EL DOCTOR</h3>
-        <SELECT name="doctor_seleccionado">
+{% block body %}
+<form action=" " method="POST">
+<p class="text-center">
+<h2>AGENDAMIENTO DE CITAS</h2></p>
+    Doctor <SELECT name="doctor_seleccionado_formulario">
         {% for c in muestra_doctores %}
             <OPTION value={{c.id}}>{{c.nombre_completo}}</option>
         {% endfor %}
         </SELECT>
-        </br>
-        <h3>SELECCIONE EL DIA</h3>
-        <input type="date">
-<!--
-        <h3>SELECCIONE LA HORA</h3>
-             <SELECT name="franja_escogida">
-                {% for c in muestra_franjas %}
-                    <OPTION value={{c.id}}>{{c.hora_inicio}}</option>
-                {% endfor %}
-             </SELECT>   
--->
-<input type=submit value="enviar">
+
+<br/>
+<br/>
+<p class="left">
+Fecha de la cita <input id="datepicker" name="fecha_formulario">  
+
+<script type="text/javascript">
+    var disabledDate = ['12/25/2021', '12/08/2021'];
+    $("#datepicker").datepicker({
+    format: 'mm/dd/yyyy',       
+    datesDisabled: disabledDate,
+    daysOfWeekDisabled: [0,6],   //desahabilita domingos y sabados
+    autoclose:true,
+    todayHighlight: true,
+    })
+    </script>
+
+<br/>
+<br/>
+<p class="left">
+Horario <SELECT name="franja_seleccionada_formulario">
+    {% for c in muestra_franjas %}
+        <OPTION value={{c.id_franja}}>{{c.hora_inicio}}</option>
+    {% endfor %}
+    </SELECT>
+<br/>
+<br/>
+<p class="left">       
+Tipo de documento:
+
+    <div class="form-group col-md-4">
+          <select id="inputState" class="form-control">
+          <option selected>Cédula de ciudadanía</option>
+          <option>Tarjeta de identidad</option>
+          <option>Registro civil</option>
+          <option>Pasaporte</option>
+          </select>
+    </div>
+    <form action="/crea_cita" method="POST">
+        <div class="form-group col-md-6">
+            <input type="value" name="numero_documento_formulario" maxlength="10" ></div>
+        </div>    
+    
+    <br><br><br> 
+
+    
+<button type="submit" class="btn btn-primary mb-2">Agendar Cita</button>    
+
+<!-- {% with messages=get_flashed_messages() %}
+{% if messages %}
+{% for messages in messages %}
+{{message}}
+{%endfor%}
+{%endif%}
+{%endwith%} -->
+
 </form>
 {% endblock %}  
