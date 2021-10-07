@@ -2,7 +2,7 @@
 {%include 'header.html'%}
 {% block title %} CREACION DE CITAS{%endblock%}
 {% block body %}
-<form action=" " method="POST">
+<form action="/crea_cita" method="POST">
 <p class="text-center">
 <h2>AGENDAMIENTO DE CITAS</h2></p>
     Doctor <SELECT name="doctor_seleccionado_formulario">
@@ -29,7 +29,7 @@ Fecha de la cita <input id="datepicker" name="fecha_formulario">
 
 <br/>
 <br/>
-<p class="left">
+
 Horario <SELECT name="franja_seleccionada_formulario">
     {% for c in muestra_franjas %}
         <OPTION value={{c.id_franja}}>{{c.hora_inicio}}</option>
@@ -39,7 +39,6 @@ Horario <SELECT name="franja_seleccionada_formulario">
 <br/>
 <p class="left">       
 Tipo de documento:
-
     <div class="form-group col-md-4">
           <select id="inputState" class="form-control">
           <option selected>Cédula de ciudadanía</option>
@@ -48,23 +47,14 @@ Tipo de documento:
           <option>Pasaporte</option>
           </select>
     </div>
-    <form action="/crea_cita" method="POST">
-        <div class="form-group col-md-6">
-            <input type="value" name="numero_documento_formulario" maxlength="10" ></div>
-        </div>    
-    
+    <input type="value" name="numero_documento_formulario" maxlength="10" ></div>
     <br><br><br> 
 
-    
-<button type="submit" class="btn btn-primary mb-2">Agendar Cita</button>    
+<p class="left">     
+<button type="submit" class="btn btn-primary mb-2">Agendar Cita</button> 
+</p>
 
-<!-- {% with messages=get_flashed_messages() %}
-{% if messages %}
-{% for messages in messages %}
-{{message}}
-{%endfor%}
-{%endif%}
-{%endwith%} -->
+
 
 </form>
 {% endblock %}  

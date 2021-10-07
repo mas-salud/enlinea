@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+{% block title %}Confirmación de Citas{%endblock%}
+{% block body %}
+<br>
+<br>
+<div class="card text-center">
+    <div class="card-header">
+        <p class="font-weight-bold">CONFIRMACIÓN DE CITA</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{paciente.nombres}} {{paciente.apellidos}} su cita quedó agendada para {{fecha}} en el horario {{franja}} con el doctor {{doctor}}</h5>
+     
+      <a class="btn btn-primary" href="/">Regresar</a>
+    </div>
+    <div class="card-footer text-muted">
+      Recuerde estar 15 minutos antes de la cita
+    </div>
+  </div>
+
+
+
+
+{% endblock %}

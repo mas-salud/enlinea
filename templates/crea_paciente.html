@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{%block title%} CONSULTORIO EN LINEA{%endblock%}
+
+{%block body%}  
+<form action=" " method="POST">
+<br>
+<br>
+
+<div class="contenedor2">
+ 
+    <H5> Registro de Pacientes:</H5>
+    <br>
+
+    Tipo de documento<span class="req">*</span>    
+    <select id="inputState" name="tipodoc_formulario" display="inline-block">
+    <option selected>CC-Cédula de ciudadanía</option>
+    <option >CE-Cédula de extranjería</option>
+    <option >PEP-Permiso especial de permanencia</option>
+    <option >TI-Tarjeta de identidad</option>
+    <option >RC-Registro civil de nacimiento</option>                 
+    <option >PSP-Pasaporte</option></select>    <th>    </th> 
+    Número<span class="req">*</span>
+    <input type="value"  name="numero_documento_formulario" maxlength="10" size="15">
+
+    <br><br>  <br> 
+<div class="center">    
+    Nombres<span class="req">*</span>
+    <input type="text" name="nombres_seleccionado_formulario" required  maxlength="50" size="50" autocomplete="off"/>
+    <label> <class="field-wrap"></label> <th> </th>
+    <br><br>
+    Apellidos<span class="req">*</span>
+    <input type="text" name ="apellidos_seleccionado_formulario" required maxlength="50" size="50" autocomplete="off"/>
+    <label> <class="field-wrap"></label> 
+    <br>
+    <br>  
+    Fecha de nacimiento<span class="req">*</span>
+    <input type="date" name="fecha_nacimiento_seleccionado_formulario" id="fecha" >
+    <label for="fecha"></label>
+    <br>
+    <br>
+
+    Número celular<span class="req">*</span>
+    <input type="tel" name="celular_seleccionado_formulario" id="telefono" 
+    maxlength="10" size="15"/><label for="telefono" class="propiedad"></label><th>      </th>
+    Número fijo <span class="req">*</span>
+    <input type="tel" id="telefono" name="telefono_seleccionado_formulario" maxlength="10" size="15"/>
+    <label for="telefono" class="propiedad"></label>
+    <br>
+    <br>
+    Correo electrónico <span class="req">*</span>
+    <input type="email" id="email" name="correo_electronico_seleccionado_formulario" maxlength="50" size="50" placeholder="(email)"/>
+    <label for="email" class="propiedad"></label>
+</div>
+    <br>
+    
+    <div class="enviar1"><br>    
+    <button type="submit" class="btn btn-primary">Registrase</button>
+    </div>
+    
+    <div class="regresar1">
+    <a class="btn btn-primary" href="" role="button">Regresar al inicio</a>
+    </div>
+
+</div>
+<br></br>   
+
+</form>
+
+
+
+{%endblock%}    
