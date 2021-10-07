@@ -77,9 +77,9 @@ def get_crea_pacientes():
         telefono_seleccionado = request_data["telefono_seleccionado_formulario"]
         celular_seleccionado = request_data["celular_seleccionado_formulario"]
         correo_electronico_seleccionado = request_data["correo_electronico_seleccionado_formulario"]
-        paciente_nuevo = Pacientes( tipodoc_seleccionado, numero_documento_seleccionado, nombres_seleccionado,apellidos_seleccionado,fecha_nacimiento_seleccionado, telefono_seleccionado,celular_seleccionado,correo_electronico_seleccionado)
+        paciente_nuevo = Pacientes( nombres_seleccionado,apellidos_seleccionado,tipodoc_seleccionado, numero_documento_seleccionado, fecha_nacimiento_seleccionado, telefono_seleccionado,celular_seleccionado,correo_electronico_seleccionado)
         paciente_nuevo.create()
-        return redirect(url_for("crea_cita"))
+        return redirect(url_for("get_crea_cita"))
 
 
 
