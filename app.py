@@ -46,12 +46,13 @@ def get_crea_cita():
         #all_franjas=Franjas.get_all()
         #envio lista con fechas deshabilitadas No. uno
         fechas_deshabilitadas = ['12/25/2021', '12/08/2021'];
-        ag = Agenda.query.all()
-        all_diasferiados =[]
-        for dias in ag:
-            all_diasferiados.append(dias.fecha_cita.strftime("%m/%d/%Y"))
+        #ag = Agenda.query.all()
+        #all_diasferiados =[]
+        #for dias in ag:
+        #    all_diasferiados.append(dias.fecha_cita.strftime("%m/%d/%Y"))
 
-        return render_template('crea_cita.html',muestra_doctores=all_doctores,muestra_franjas=all_franjas,disabledDate=str(all_diasferiados),date=date_cita)
+        #return render_template('crea_cita.html',muestra_doctores=all_doctores,muestra_franjas=all_franjas,disabledDate=str(all_diasferiados),date=date_cita,id_doc=id_doc)
+        return render_template('crea_cita.html',muestra_doctores=all_doctores,muestra_franjas=all_franjas,disabledDate=fechas_deshabilitadas,date=date_cita,id_doc=id_doc)
     else:
         request_data=request.form
         doctor_seleccionado = request_data["doctor_seleccionado_formulario"]

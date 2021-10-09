@@ -23,7 +23,8 @@
 <br>
 Doctor <SELECT name="doctor_seleccionado_formulario">
         {% for c in muestra_doctores %}
-            <OPTION value={{c.id}}>{{c.nombre_completo}}</option>
+            <OPTION value={{c.id}} {% if c.id==id_doc %} selected {% endif %}>{{c.nombre_completo}}</option>
+                      
         {% endfor %}
         </SELECT>
 
@@ -40,7 +41,12 @@ Fecha de la cita <input id="datepicker" name="fecha_formulario" value={{ date }}
     daysOfWeekDisabled: [0,6],   //desahabilita domingos y sabados
     autoclose:true,
     todayHighlight: true,
-    })
+    });
+
+    $('[name="fecha_formulario"]').change( function(){
+  window.location.href="/crea_cita?id_doc="+$('[name="doctor_seleccionado_formulario"]').val()+"&date="+$('[name="fecha_formulario"]').val();
+});   
+
     //AQUI
     </script>
 
