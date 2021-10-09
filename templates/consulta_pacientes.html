@@ -8,7 +8,7 @@
 
     <H5 align="center"> Ingresa tus datos para realizar la consulta de las citas vigentes </H5><br></br>
 
-    <div class="form-group col-md-2" display="inline-block" text-align= "center !important" style="float: left;
+    <div class="form-group col-md-2"  text-align= "center !important" style="float: left;
     margin-left: 300px;
     margin-right: 50px">
     <label for="inputState">Tipo de documento:</label>
@@ -23,17 +23,18 @@
     </div><br></br>
     <form action="/pacientes_citas" method="POST">
     <div class="row"> 
-    <input type="value" name="busca_documento" maxlength="10" class="form-control" placeholder="numero"></div>
+    <input type="number" name="busca_documento" maxlength="10" class="form-control"  required placeholder="numero"></div>
     
     <br><br><br> 
-
-    <div class="consultar">
-    <button type="submit" class="btn btn-primary">Consultar</button></div>
-    <br></br>  
-      
-    <div class="regresar">
-        <a class="btn btn-primary" href="home" role="button">Regresar al inicio</a>
+   
+    <div class="col-md-12 text-center">   
+    <button type="submit" class="btn btn-primary" style="margin-right: 30px">Consultar</button>
+       
+   
+    <a class="btn btn-primary" href="/" role="button">Regresar al inicio</a>
+       
     </div>
+   
 </form>  
 
 {%endblock%}      

@@ -24,6 +24,14 @@ class Franjas(database.Model):
     @staticmethod
     def get_all():
         return Franjas.query.all()
+    
+    @staticmethod
+    def get_for_ids(lista):
+        all_franjas=[]
+        for id in lista:
+            all_franjas.append(Franjas.query.get(id))
+
+        return all_franjas#Franjas.query.all()
         
     @staticmethod
     def todict():

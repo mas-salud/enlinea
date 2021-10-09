@@ -8,10 +8,6 @@
 <div class="row"></div>
 <h2>CONSULTA DE AGENDA DE DOCTORES</h2>
 <div class="container"></div>
-<div class="row"></div>
-
-
-
 <table style="width: 70%" class="center">
    
     <tr>
@@ -25,7 +21,7 @@
 
         <th>{{row.id}}</th>
         <th>{{row.fecha_cita}}</th>
-        <th>{{muestra_paciente[row.id_paciente].nombres}}</th>
+        <th>{{muestra_paciente[row.id_paciente].nombres+" "+muestra_paciente[row.id_paciente].apellidos}}</th>
         <th>{{muestra_franjas[row.id_franja].hora_inicio}}</th>
        
        </tr> 

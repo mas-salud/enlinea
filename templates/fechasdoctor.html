@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{% block title %} CONSULTORIO EN LINEA{%endblock%}
+
+{% block body %}    
+<div class="container"></div>
+<div class="row"></div>
+<h2>CONSULTA fechas doctores</h2>
+        {% for indice in range(0,len(fecha)) %}
+            print(fecha[indice])
+        {% endfor %}
+       
+{% endblock %}  

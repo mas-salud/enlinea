@@ -3,9 +3,25 @@
 {% block title %} CREACION DE CITAS{%endblock%}
 {% block body %}
 <form action="/crea_cita" method="POST">
-<p class="text-center">
-<h2>AGENDAMIENTO DE CITAS</h2></p>
-    Doctor <SELECT name="doctor_seleccionado_formulario">
+<div class="card text-center">
+    <div class="card-header">
+        <p class="font-weight-bold">AGENDAMIENTO DE CITAS</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Para agendar una cita en nuestro sistema usted debe estar registrado</h5>
+     
+      <a class="btn btn-primary" href="/crea_pacientes">Registrarse</a>
+      <a class="btn btn-primary" href="/">Regresar</a>
+    </div>
+    <div class="card-footer text-muted">
+      
+    </div>
+  </div>
+
+
+<br>
+<br>
+Doctor <SELECT name="doctor_seleccionado_formulario">
         {% for c in muestra_doctores %}
             <OPTION value={{c.id}}>{{c.nombre_completo}}</option>
         {% endfor %}
@@ -14,10 +30,10 @@
 <br/>
 <br/>
 <p class="left">
-Fecha de la cita <input id="datepicker" name="fecha_formulario">  
+Fecha de la cita <input id="datepicker" name="fecha_formulario" value={{ date }}>  
 
 <script type="text/javascript">
-    var disabledDate = ['12/25/2021', '12/08/2021'];
+    var disabledDate = {{ disabledDate|safe }};
     $("#datepicker").datepicker({
     format: 'mm/dd/yyyy',       
     datesDisabled: disabledDate,
@@ -25,6 +41,7 @@ Fecha de la cita <input id="datepicker" name="fecha_formulario">
     autoclose:true,
     todayHighlight: true,
     })
+    //AQUI
     </script>
 
 <br/>
@@ -37,7 +54,24 @@ Horario <SELECT name="franja_seleccionada_formulario">
     </SELECT>
 <br/>
 <br/>
-<p class="left">       
+Tipo de documento<span class="req">*</span>    
+    <select id="inputState" name="tipodoc_formulario" display="inline-block">
+    <option value=1 selected>CC-Cédula de ciudadanía</option>
+    <option value=2 >CE-Cédula de extranjería</option>
+    <option value=3 >PEP-Permiso especial de permanencia</option>
+    <option value=4>TI-Tarjeta de identidad</option>
+    <option value=5>RC-Registro civil de nacimiento</option>                 
+    <option value=6>PSP-Pasaporte</option></select>    <th>    </th> 
+    Número<span class="req">*</span>
+    <input type="value"  name="numero_documento_formulario" maxlength="10" size="15">
+
+
+
+
+
+
+
+<!-- <p class="left">       
 Tipo de documento:
     <div class="form-group col-md-4">
           <select id="inputState" class="form-control">
@@ -48,7 +82,7 @@ Tipo de documento:
           </select>
     </div>
     <input type="value" name="numero_documento_formulario" maxlength="10" ></div>
-    <br><br><br> 
+    <br><br><br>  -->
 
 <p class="left">     
 <button type="submit" class="btn btn-primary mb-2">Agendar Cita</button> 

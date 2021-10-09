@@ -2,6 +2,7 @@
 {%include 'header.html'%}
 {% block title %}Paciente no registrado{%endblock%}
 {% block body %}
+<form action=" " method="POST">
 <br>
 <br>
 <div class="card text-center">
@@ -9,12 +10,20 @@
         <p class="font-weight-bold">PACIENTE NO REGISTRADO</p>
     </div>
     <div class="card-body">
-      <h5 class="card-title">El paciente con documento de identificación {{}} no se encuentra registrado</h5>
-     
-      <a class="btn btn-primary" href="/">Regresar</a>
-      <a class="btn btn-primary" href="/">Registrarse</a>  
-    </div>
+      <h5 class="card-title">El usuari@ con documento de identificación {{documento_consultado}} no se encuentra registrado </h5>
+      <a class="btn btn-primary" href="/crea_pacientes" role="button">Registrarse</a>
+      <!-- <a class="btn btn-primary" href="/">Registrarse</a>   -->
+      <div class="regresar1">
+        <a class="btn btn-primary" href="/" role="button">Regresar al inicio</a>
+        <br>
+        <br>
+      </div>
+        </div>
+
+
     <div class="card-footer text-muted">
      
     </div>
   </div>
+</form>
+{%endblock%}
