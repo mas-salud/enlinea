@@ -6,7 +6,7 @@
 {%block body%}   
 <br></br>
 
-    <H5 align="center"> Ingresa tus datos para realizar la consulta de las citas vigentes </H5><br></br>
+    <H1 align="center"> Ingresa tus datos para realizar la consulta de las citas vigentes </H1><br></br>
 
     <div class="form-group col-md-2"  text-align= "center !important" style="float: left;
     margin-left: 300px;
@@ -14,19 +14,21 @@
     <label for="inputState">Tipo de documento:</label>
     <br></br>
 
-    <select id="inputState" class="form-control" Style="border: 1px solid #7a7c83; padding: 7px">
-        <option selected>Cédula de ciudadanía</option>
-        <option value>Tarjeta de identidad</option>
-        <option value>Registro civil</option>                 
-        <option value>Pasaporte</option>
+    <select id="inputState" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="border: 1px solid #7a7c83; padding: 7px; width: 100%; height: 100%; margin-left: 15%; margin-right: 15%;">
+        <option selected>Seleccione</option>
+        <option value="1">CC-Cédula de ciudadanía</option>
+        <option value="2">CE-Cédula de extranjería</option>
+        <option value="3">PEP-Permiso especial de permanencia</option>
+        <option value="4">TI-Tarjeta de identidad</option>
+        <option value="5">RC-Registro civil de nacimiento</option>
+        <option value="6">PSP-Pasaporte</option>
     </select>
     </div><br></br>
     <form action="/pacientes_citas" method="POST">
-    <div class="row"> 
-    <input type="number" name="busca_documento" maxlength="10" class="form-control"  required placeholder="numero"></div>
+    <input type="number" name="busca_documento" maxlength="10" class="form-control; row"  required placeholder="numero"></div>
     
     <br><br><br> 
-   
+
     <div class="col-md-12 text-center">   
     <button type="submit" class="btn btn-primary" style="margin-right: 30px">Consultar</button>
        
