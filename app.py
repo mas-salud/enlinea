@@ -33,10 +33,25 @@ def home():
 @app.route("/crea_cita",methods=["GET", "POST"])
 
 def get_crea_cita():   
-    if (request.method == "GET"): 
+    if (request.method == "GET"):
+        date_cita=request.args.get("date",default="", type=str)
+        id_doc=request.args.get("id_doc",default=1, type=int)
+        if date_cita=="":
+            all_franjas=[]
+        else:
+            id_franjas_ocupadas=list(Agenda.query.with_entities(Agenda.id_franja).filter_by(fecha_cita=date_cita,id_doc=id_doc).all())
+            id_franjas_desocupadas=list(set(range(1,17)).difference(set([agd[0] for agd in id_franjas_ocupadas])))
+            all_franjas=Franjas.get_for_ids(id_franjas_desocupadas)
         all_doctores=Doctores.get_all()
-        all_franjas=Franjas.get_all()
-        return render_template('crea_cita.html',muestra_doctores=all_doctores,muestra_franjas=all_franjas)
+        #all_franjas=Franjas.get_all()
+        #envio lista con fechas deshabilitadas No. uno
+        fechas_deshabilitadas = ['12/25/2021', '12/08/2021'];
+        ag = Agenda.query.all()
+        all_diasferiados =[]
+        for dias in ag:
+            all_diasferiados.append(dias.fecha_cita.strftime("%m/%d/%Y"))
+
+        return render_template('crea_cita.html',muestra_doctores=all_doctores,muestra_franjas=all_franjas,disabledDate=str(all_diasferiados),date=date_cita)
     else:
         request_data=request.form
         doctor_seleccionado = request_data["doctor_seleccionado_formulario"]
@@ -109,9 +124,11 @@ def get_pacientes():
     else:    
         return render_template('consulta_pacientes.html')
 
-""" @app.route('/crea_paciente')
-def get_crea_paciente():
-    return "Paciente falta" """
+
+
+
+
+
 
 @app.route("/pacientes_citas",methods=["GET", "POST"])
 def get_pacientes_citas():
@@ -123,16 +140,18 @@ def get_pacientes_citas():
     print(documento_paciente)
     busca = (Pacientes.query.filter_by(numero_documento= documento_paciente).first())
     if busca==None:
-        return "NO creado"
+        return render_template('paciente_no_registrado.html',documento_consultado=documento_paciente)
+        #return "NO creado"
     else:
         id_capturado_paciente=busca.id
         all_data=Agenda.query.filter_by(id_paciente=id_capturado_paciente).all()
         buscan = (Pacientes.query.filter_by(id= id_capturado_paciente).first())
         nombre_busca=buscan.nombres
+        apellido_busca=buscan.apellidos
         print(nombre_busca)
         all_doctores=Doctores.todict()
         all_franjas=Franjas.todict()
-        return render_template('consulta_agenda_pacientes.html',nombre=nombre_busca,muestra_agenda=all_data,muestra_doctores=all_doctores,muestra_franjas=all_franjas)
+        return render_template('consulta_agenda_pacientes.html',nombre=nombre_busca,apellido=apellido_busca,muestra_agenda=all_data,muestra_doctores=all_doctores,muestra_franjas=all_franjas)
 
 
 
@@ -165,6 +184,17 @@ def get_franjas_doctor():
 
 @app.route("/doctores")
 
+def get_doctores():
+    all_data=Doctores.get_all()
+    return render_template('consulta_doctores.html',muestra_doctores=all_data)
+
+""" @app.route("/fechas_deshabilitadas")
+def get_fechas_deshabilitadas():
+    filtrodoctorfecha = (Agenda.query.filter((Agenda.id_doc == 2) & (Agenda.fecha_cita =="10/19/2021" )))
+    cuantos=len(filtrodoctorfecha.all())
+    print(cuantos)
+    return render_template('fechasdoctor.html',fecha=filtrodoctorfecha)
+     """
 def get_doctores():
     all_data=Doctores.get_all()
     return render_template('consulta_doctores.html',muestra_doctores=all_data)
