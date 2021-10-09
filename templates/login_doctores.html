@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%include 'header.html'%}
+
+{%block title%} CONSULTORIO EN LINEA{%endblock%}
+
+{%block body%} BIENVENIDO A MAS SALUD LOGIN DOCTORES 
+
+<br><br>
+<div class="container">
+    <form method="POST">
+        <label for="corrdoct">Correo institucional:</label>
+        <input type="text" id="correodoct" name="correodoct"><br><br>
+        <label for="clavedoctor">Contraseña:</label>
+        <input type="text" id="clavedoct" name="clavedoct"><br><br>
+        <label for="fecha">Fecha de Consulta:</label>
+        <input type="date" id="fecha" name="fecha"><br><br>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+    </form>
+      
+      <p>Al dar clic, se dirigirá a la pantalla de consulta agenda doctores</p> 
+
+</div>
+
+{%endblock%}    

@@ -46,4 +46,7 @@ class Doctores(database.Model):
     def get_email(email_find):
         return Doctores.query.filter_by(correo_electronico=email_find).first()
     
-   
+   # adiciono andrea
+    @staticmethod
+    def match_login(email,clave):
+        return Doctores.query.filter_by(correo_electronico=email).filter_by(clave=clave).first()

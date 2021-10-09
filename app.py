@@ -219,6 +219,36 @@ def get_calendario():
     return render_template('calendario.html',lista_fechas=fechas_deshabilitadas)
 
 
-if __name__ == '__main__':
+""" if __name__ == '__main__':
     app.debug=True
-    app.run()
+    app.run() """
+## realizo andrea    
+@app.route("/login_doctores", methods=['GET','POST'])
+def login_de_doctores():
+     if request.method == 'POST':
+         correo = request.form['correodoct']
+         clave= request.form['clavedoct']
+         fechac=request.form['fecha']
+         doctor = Doctores.match_login(correo,clave)
+         if doctor != None:
+            id=doctor.id
+            nombre=doctor.nombre_completo
+            print(nombre)
+            all_data=Agenda.query.filter_by(id_doc=id).all()
+            all_pacientes=Pacientes.todict()
+            all_doctores=Doctores.todict()
+            all_franjas=Franjas.todict()
+            return render_template('consulta_agenda_doctores.html',nombred=nombre,muestra_paciente=all_pacientes,muestra_agenda=all_data,muestra_franjas=all_franjas,muestra_doctores=all_doctores) 
+         else:
+            return render_template('login_doctores.html')    
+         print(doctor)
+     return render_template('login_doctores.html')
+
+
+
+
+    
+
+    
+if __name__ == '__main__' :    
+    app.run(debug=False)
