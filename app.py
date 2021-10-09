@@ -234,7 +234,7 @@ def login_de_doctores():
             id=doctor.id
             nombre=doctor.nombre_completo
             print(nombre)
-            all_data=Agenda.query.filter_by(id_doc=id).all()
+            all_data=Agenda.query.filter_by(id_doc=id,fecha_cita=fechac).all()
             all_pacientes=Pacientes.todict()
             all_doctores=Doctores.todict()
             all_franjas=Franjas.todict()
