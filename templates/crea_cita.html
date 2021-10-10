@@ -31,7 +31,7 @@ Doctor <SELECT name="doctor_seleccionado_formulario">
 <br/>
 <br/>
 <p class="left">
-Fecha de la cita <input id="datepicker" name="fecha_formulario" value={{ date }}>  
+Fecha de la cita <input id="datepicker" name="fecha_formulario"  value={{ date }}>  
 
 <script type="text/javascript">
     var disabledDate = {{ disabledDate|safe }};
@@ -40,6 +40,7 @@ Fecha de la cita <input id="datepicker" name="fecha_formulario" value={{ date }}
     datesDisabled: disabledDate,
     daysOfWeekDisabled: [0,6],   //desahabilita domingos y sabados
     autoclose:true,
+    startDate: new Date(),
     todayHighlight: true,
     });
 
@@ -69,7 +70,7 @@ Tipo de documento<span class="req">*</span>
     <option value=5>RC-Registro civil de nacimiento</option>                 
     <option value=6>PSP-Pasaporte</option></select>    <th>    </th> 
     Número<span class="req">*</span>
-    <input type="value"  name="numero_documento_formulario" maxlength="10" size="15">
+    <input type="number"    name="numero_documento_formulario" requiered maxlength="10" size="15">
 
 
 

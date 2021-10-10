@@ -1,16 +1,17 @@
 from flask import Flask
 from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+
 from flask import redirect,url_for,request
-from flask.helpers import flash
+from datetime import *
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yqwsipgsefzhwf:c8e6c437ed5e21655da9e1b9a8d7be755a70699f960bfc76af3bf05fdfaa0816@ec2-44-193-150-214.compute-1.amazonaws.com:5432/db3t4c0ipt369a'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 database = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
+#bcrypt = Bcrypt(app)
 
 app.secret_key='12345'
 
@@ -46,7 +47,7 @@ def get_crea_cita():
         #all_franjas=Franjas.get_all()
         #envio lista con fechas deshabilitadas No. uno
         fechas_deshabilitadas = ['12/25/2021', '12/08/2021'];
-        #ag = Agenda.query.all()
+        #ag = No_laborales.query.all()
         #all_diasferiados =[]
         #for dias in ag:
         #    all_diasferiados.append(dias.fecha_cita.strftime("%m/%d/%Y"))
@@ -144,8 +145,10 @@ def get_pacientes_citas():
         return render_template('paciente_no_registrado.html',documento_consultado=documento_paciente)
         #return "NO creado"
     else:
+        hoy=date.today()
+        print(hoy)
         id_capturado_paciente=busca.id
-        all_data=Agenda.query.filter_by(id_paciente=id_capturado_paciente).all()
+        all_data=Agenda.query.filter_by(id_paciente=id_capturado_paciente).order_by(Agenda.fecha_cita.asc()).all()
         buscan = (Pacientes.query.filter_by(id= id_capturado_paciente).first())
         nombre_busca=buscan.nombres
         apellido_busca=buscan.apellidos
@@ -189,13 +192,7 @@ def get_doctores():
     all_data=Doctores.get_all()
     return render_template('consulta_doctores.html',muestra_doctores=all_data)
 
-""" @app.route("/fechas_deshabilitadas")
-def get_fechas_deshabilitadas():
-    filtrodoctorfecha = (Agenda.query.filter((Agenda.id_doc == 2) & (Agenda.fecha_cita =="10/19/2021" )))
-    cuantos=len(filtrodoctorfecha.all())
-    print(cuantos)
-    return render_template('fechasdoctor.html',fecha=filtrodoctorfecha)
-     """
+
 def get_doctores():
     all_data=Doctores.get_all()
     return render_template('consulta_doctores.html',muestra_doctores=all_data)
@@ -234,11 +231,12 @@ def login_de_doctores():
             id=doctor.id
             nombre=doctor.nombre_completo
             print(nombre)
-            all_data=Agenda.query.filter_by(id_doc=id,fecha_cita=fechac).all()
+            all_data=Agenda.query.filter_by(id_doc=id,fecha_cita=fechac).order_by(Agenda.id_franja.asc()).all()
             all_pacientes=Pacientes.todict()
             all_doctores=Doctores.todict()
             all_franjas=Franjas.todict()
-            return render_template('consulta_agenda_doctores.html',nombred=nombre,muestra_paciente=all_pacientes,muestra_agenda=all_data,muestra_franjas=all_franjas,muestra_doctores=all_doctores) 
+            fechas_deshabilitadas = ['12/25/2021', '12/08/2021'];
+            return render_template('consulta_agenda_doctores.html',nombred=nombre,muestra_paciente=all_pacientes,muestra_agenda=all_data,muestra_franjas=all_franjas,muestra_doctores=all_doctores,disabledDate=fechas_deshabilitadas) 
          else:
             return render_template('login_doctores.html')    
          print(doctor)

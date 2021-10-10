@@ -11,9 +11,25 @@
         <label for="corrdoct">Correo institucional:</label>
         <input type="text" id="correodoct" name="correodoct"><br><br>
         <label for="clavedoctor">Contraseña:</label>
-        <input type="text" id="clavedoct" name="clavedoct"><br><br>
-        <label for="fecha">Fecha de Consulta:</label>
-        <input type="date" id="fecha" name="fecha"><br><br>
+        <input type="password" id="clavedoct" name="clavedoct"><br><br>
+        <!-- type="password" name="password2" class="form-control password2" value="clave" placeholder="" /> -->
+
+
+        <label for="fecha">Fecha de Consulta Agenda:</label>
+        <input id="datepicker" name="fecha"  value={{ date }}>  
+        <script type="text/javascript">
+        // var disabledDate = {{ disabledDate|safe }};
+        $("#datepicker").datepicker({
+        format: 'mm/dd/yyyy',       
+        // datesDisabled: disabledDate,
+        daysOfWeekDisabled: [0,6],   //desahabilita domingos y sabados
+        autoclose:true,
+        startDate: new Date(),
+        todayHighlight: true,
+        });
+      </script>
+      <br><br>
+        
         <button type="submit" class="btn btn-primary">Ingresar</button>
     </form>
       

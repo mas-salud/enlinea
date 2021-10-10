@@ -13,13 +13,28 @@ html {
   background-color: #63cbdc;
 }
 
-.row {
+/* .row {
   border: 1px solid #7a7c83;
   width: 200px;
   border-radius: 2%;
   margin-left: 35%;
   margin-right: 55%;
 }
+ */
+.row {
+  border: 0px solid #7a7c83;
+  border-radius: 35px;
+  width: 200px;
+  margin-left: 35%;
+  margin-right: 55%;
+  height: 34px;
+  position: relative;
+  top: 0.7vmin;
+}
+
+
+
+
 
 .consultar {
   height: 35px;
