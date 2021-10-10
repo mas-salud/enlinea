@@ -18,16 +18,16 @@
         <label for="fecha">Fecha de Consulta Agenda:</label>
         <input id="datepicker" name="fecha"  value={{ date }}>  
         <script type="text/javascript">
-        // var disabledDate = {{ disabledDate|safe }};
-        $("#datepicker").datepicker({
-        format: 'mm/dd/yyyy',       
-        // datesDisabled: disabledDate,
-        daysOfWeekDisabled: [0,6],   //desahabilita domingos y sabados
-        autoclose:true,
-        startDate: new Date(),
-        todayHighlight: true,
-        });
-      </script>
+          
+          $("#datepicker").datepicker({
+          format: 'mm/dd/yyyy',       
+          datesDisabled:['12/25/2021', '12/08/2021'] ,
+          daysOfWeekDisabled: [0,6],   //desahabilita domingos y sabados
+          autoclose:true,
+          startDate: new Date(),
+          todayHighlight: true,
+          });
+        </script>
       <br><br>
         
         <button type="submit" class="btn btn-primary">Ingresar</button>

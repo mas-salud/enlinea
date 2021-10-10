@@ -11,7 +11,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yqwsipgsefzhwf:c8e6c437ed5
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 database = SQLAlchemy(app)
-#bcrypt = Bcrypt(app)
 
 app.secret_key='12345'
 
@@ -44,7 +43,6 @@ def get_crea_cita():
             id_franjas_desocupadas=list(set(range(1,17)).difference(set([agd[0] for agd in id_franjas_ocupadas])))
             all_franjas=Franjas.get_for_ids(id_franjas_desocupadas)
         all_doctores=Doctores.get_all()
-        #all_franjas=Franjas.get_all()
         #envio lista con fechas deshabilitadas No. uno
         fechas_deshabilitadas = ['12/25/2021', '12/08/2021'];
         #ag = No_laborales.query.all()
@@ -219,6 +217,7 @@ def get_calendario():
 """ if __name__ == '__main__':
     app.debug=True
     app.run() """
+    
 ## realizo andrea    
 @app.route("/login_doctores", methods=['GET','POST'])
 def login_de_doctores():
@@ -235,10 +234,11 @@ def login_de_doctores():
             all_pacientes=Pacientes.todict()
             all_doctores=Doctores.todict()
             all_franjas=Franjas.todict()
-            fechas_deshabilitadas = ['12/25/2021', '12/08/2021'];
-            return render_template('consulta_agenda_doctores.html',nombred=nombre,muestra_paciente=all_pacientes,muestra_agenda=all_data,muestra_franjas=all_franjas,muestra_doctores=all_doctores,disabledDate=fechas_deshabilitadas) 
+            
+            return render_template('consulta_agenda_doctores.html',nombred=nombre,muestra_paciente=all_pacientes,muestra_agenda=all_data,muestra_franjas=all_franjas,muestra_doctores=all_doctores) 
          else:
-            return render_template('login_doctores.html')    
+            fechas_deshabilitadas = ['12/25/2021', '12/08/2021'] 
+            return render_template('login_doctores.html',disabledDate=fechas_deshabilitadas)    
          print(doctor)
      return render_template('login_doctores.html')
 
